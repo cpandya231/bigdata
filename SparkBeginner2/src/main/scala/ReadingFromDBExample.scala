@@ -1,8 +1,6 @@
 
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.{LongType, StringType, StructField, StructType}
-import  java.sql.DriverManager
 object ReadingFromDBExample {
 
 
@@ -24,7 +22,7 @@ object ReadingFromDBExample {
 //    connection.isClosed()
 
     val dbDataFrame= spark.read.format("jdbc").option("url",url).option("dbtable",tablename).option("driver",driver).load()
-    print("Any")
+
     dbDataFrame.select("DEST_COUNTRY_NAME").distinct().show(5)
 
     // Reading data by partitioning predicates
